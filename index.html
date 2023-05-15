@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bolus Advisor</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body>
+        <div class="app">
+            <h1 style="color: white; font-family: Arial, Helvetica, sans-serif; text-align: center; padding-top: 10px;">Bolus Advisor</h1>
+            <div id="calculator" class="page">
+                <div class="calculatorControls">
+                    <div class="input-group">
+                        <span style="width: 2.5%"></span>
+                        <div class="input-group input-group-lg mb-3" style="width: 45%">
+                            <input id="bG" type="number" min="0" class="form-control text-right" placeholder="bG" aria-label="bG" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" style="font-size: 1em;">mmol/L</span>
+                        </div>
+                        <span style="width: 5%"></span>
+                        <div class="input-group input-group-lg mb-3" style="width: 45%">
+                            <input id="carbs" type="number" min="0" class="form-control text-right" placeholder="Carbs" aria-label="carbs" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2" style="font-size: 1em;">g</span>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="health" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Health
+                        </button>
+                        <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item rounded-2" type="button" onclick="showHealth(this)">No Entry</a>
+                            <a class="dropdown-item rounded-2" type="button" onclick="showHealth(this)">Fasting</a>
+                            <a class="dropdown-item rounded-2" type="button" onclick="showHealth(this)">Exercise</a>
+                            <a class="dropdown-item rounded-2" type="button" onclick="showHealth(this)">Stress</a>
+                            <a class="dropdown-item rounded-2" type="button" onclick="showHealth(this)">Illness</a>
+                        </div>
+                    </div>
+                    <button class="sage">Calculate</button>
+                </div>
+                <div class="display">
+                    <div id="bolusLine">
+                        <span id="bolusText"></span>
+                        <span id="bolusAmount"></span>
+                        <span id="bolusUnits"></span>
+                    </div>
+                    <div id="activeInsulinLine">
+                        <span id="activeInsulinText"></span>
+                        <span id="activeInsulinAmount"></span>
+                        <span id="activeInsulinUnits"></span>
+                    </div>
+                </div>
+                <div class="calculatorControls">
+                    <div class="insulinBtns">
+                        <div class="bolusBtn">
+                            <input id="bolusBtn" required type="number" min="0" style="color: gold;" class="insulinBtn" placeholder="Bolus">
+                            <span class="fa-solid fa-angles-up fa-xl upspan"></span>
+                        </div>
+                        <div class="basalBtn">
+                            <input required type="number" min="0" style="color: gold;" class="insulinBtn" placeholder="Basal">
+                            <span class="fa-solid fa-angle-up fa-xl upspan"></span>
+                        </div>
+                        <!-- <button style="color: gold;" class="insulinBtn"><i class="fa-solid fa-angles-up fa-xl"></i><span id="bolusBtn">Bolus</span><span id="insulinBolusUnits"></span></button> -->
+                        <!-- <button style="color: silver;" class="insulinBtn"><i class="fa-solid fa-angle-up fa-xl"></i>Basal</button> -->
+                    </div>
+                </div>
+                <div class="calculatorControls">
+                    <div class="saveUpdateBtns">
+                        <button style="color: gold;" class="saveBtn" onclick="saveBolus()"><i class="fa-solid fa-floppy-disk"></i><span id="saveBtn">Save</span></button>
+                        <button class="saveBtn" onclick="update()"><i class="fa-solid fa-arrows-rotate"></i>Update</button>
+                    </div>
+                </div>
+            </div>
+            <div id="settings" class="page">
+                <div class="settingsControls">
+                    <button class="sage">Time Blocks</button>
+                    <button>Health Events</button>
+                    <button>Advice Options</button>
+                </div>
+            </div>
+            <div class="tabs">
+                <div class="tabControls">
+                    <button id="calculatorBtn" class="tab" onclick="openCalculator()"><i class="fa-solid fa-calculator"></i>Calculator</button>
+                    <button id="settingsBtn" class="tab" onclick="openSettings()"><i class="fa-solid fa-gear"></i>Settings</button>
+                </div>
+            </div>
+        </div>
+        <script src="./index.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    </body>
+</html>

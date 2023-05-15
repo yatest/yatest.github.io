@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+    background: #101010;
+    width: 25em;
+    margin: 5em auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.page {
+    transform: translateX(100%);
+    transition: 0.3s;
+}
+
+#calculator {
+    transform: translateX(0px);
+}
+
+#calculatorBtn {
+    color: #ff7846;
+}
+
+.display {
+    background: #222222;
+    color: #fff;
+    text-align: right;
+    font-size: 1em;
+    height: 4em;
+    line-height: 2em;
+    padding: 0 1.5em;
+}
+
+#settings {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 20%;
+    margin: auto;
+}
+
+.calculatorControls {
+    padding: 0.7em 0;
+    margin: auto 0.5em;
+}
+
+.calculatorControls button {
+    display: block;
+    background: #222222;
+    color: #fff;
+    height: 5.5em;
+    width: 100%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    border: unset;
+    border-radius: 0.5em;
+    outline: unset;
+}
+
+.calculatorControls button:hover {
+    background: #333333;
+}
+
+.calculatorControls button:active {
+    transform: translateY(0.5em);
+}
+
+.calculatorControls .sage {
+    background: #9ae681;
+}
+
+.calculatorControls .sage:hover {
+    background: #c1f0b2;
+}
+
+.calculatorControls .insulinBtns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto 0.5em;
+    gap: 0 1em;
+}
+
+.calculatorControls .insulinBtn .fa-solid {
+    margin-right: 5px;
+}
+
+.calculatorControls .saveUpdateBtns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto 0.5em;
+    gap: 0 1em;
+}
+
+.calculatorControls .saveBtn .fa-solid {
+    margin-right: 5px;
+}
+
+.insulinBtns {
+    padding: 0.7em 0;
+    margin: auto 0.5em;
+}
+
+.insulinBtns input {
+    display: block;
+    background: #222222;
+    color: #fff;
+    height: 4.5em;
+    width: 100%;
+    padding: 10px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    border: unset;
+    border-radius: 0.5em;
+    outline: unset;
+    text-align: right;
+    font-size: 20px;
+}
+
+.upspan {
+    float: left;
+    /* margin-right: 6px; */
+    /* margin-top: -20px; */
+    position: relative;
+    left: 10px;
+    top: -55px;
+    z-index: 2;
+}
+
+.tabControls .tab .fa-solid {
+    margin-right: 5px;
+}
+
+.tabControls .tab:hover .fa-solid {
+    color: #ff7846;
+}
+
+.settingsControls {
+    padding: 0.7em 0;
+    margin: auto 0.5em;
+}
+
+.settingsControls button {
+    display: block;
+    background: #222222;
+    color: #fff;
+    height: 5.5em;
+    width: 100%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    border: unset;
+    border-radius: 0.5em;
+    outline: unset;
+}
+
+.settingsControls button:hover {
+    background: #333333;
+}
+
+.settingsControls button:active {
+    transform: translateY(0.5em);
+}
+
+.settingsControls .sage {
+    background: #9ae681;
+}
+
+.settingsControls .sage:hover {
+    background: #c1f0b2;
+}
+
+.settingsControls .tab .fa-solid {
+    margin-right: 5px;
+}
+
+.settingsControls .tab:hover .fa-solid {
+    color: #ff7846;
+}
+
+.tabControls {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 0.7em 0;
+    margin: auto 0.5em;
+}
+
+.tabControls button {
+    background: #222222;
+    color: #fff;
+    height: 5.5em;
+    cursor: pointer;
+    margin: 0.5em;
+    border: unset;
+    border-radius: 0.5em;
+    outline: unset;
+}
+
+.tabControls button:hover {
+    background: #333333;
+}
+
+.tabControls button:active {
+    transform: translateY(0.5em);
+}
+
+.tabControls .sage {
+    background: #9ae681;
+}
+
+.tabControls .sage:hover {
+    background: #c1f0b2;
+}
+
+.tabControls .tab .fa-solid {
+    margin-right: 5px;
+}
+
+.tabControls .tab:hover .fa-solid {
+    color: #ff7846;
+}
+
+.form-control::placeholder {
+    text-align: left;
+    opacity: 1;
+}
+
+.dropdown-menu {
+    font-size: 20px;
+  }
+
+@media screen and (max-width: 768px) {
+    .calculator {
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+    }
+}
