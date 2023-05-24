@@ -1,5 +1,4 @@
 // TODO: convert to React
-// TODO: finish save()
 // TODO: automatically fit to phone size
 // TODO: remove highlight on button after press on mobile
 // TODO: add user settings
@@ -35,7 +34,9 @@ const calculate = () => {
         carbsFloat = parseFloat(carbs.value);
         bGFloat = parseFloat(bG.value);
 
-        result = (carbsFloat / carbToUnit + (bGFloat - bGTarget) / corrToUnit) * healthPen;
+        let carbValue = carbsFloat / carbToUnit;
+        let bGValue = (bGFloat - bGTarget) / corrToUnit;
+        result = (carbValue + bGValue) * healthPen;
         result = result.toFixed(1);
         
         if (result < 0.1) {
@@ -51,20 +52,36 @@ const calculate = () => {
         } 
 
         string1 = "Carbs = ";
-        string2 = "Active insulin = ";
+        string2 = "bG = ";
+        string3 = "Health multiplier = ";
+        string4 = "Active insulin = ";
 
         let bolusAmount = document.getElementById("bolusAmount");
         let bolusText = document.getElementById("bolusText");
         let bolusUnits = document.getElementById("bolusUnits");
         bolusText.innerText = string1;
-        bolusAmount.innerText = result;
+        bolusAmount.innerText = carbValue;
         bolusAmount.style.color = 'green';
         bolusUnits.innerText = ' units';
+
+        let bGAmount = document.getElementById("bGAmount");
+        let bGText = document.getElementById("bGText");
+        let bGUnits = document.getElementById("bGUnits");
+        bGText.innerText = string2;
+        bGAmount.innerText = parseFloat(bGValue).toFixed(1);
+        bGAmount.style.color = 'green';
+        bGUnits.innerText = ' units';
+
+        let healthAmount = document.getElementById("healthAmount");
+        let healthText = document.getElementById("healthText");
+        healthText.innerText = string3;
+        healthAmount.innerText = healthPen;
+        healthAmount.style.color = 'yellow';
 
         let activeInsulinAmount = document.getElementById("activeInsulinAmount");
         let activeInsulinText = document.getElementById("activeInsulinText");
         let activeInsulinUnits = document.getElementById("activeInsulinUnits");
-        activeInsulinText.innerText = string2;
+        activeInsulinText.innerText = string4;
         activeInsulinAmount.innerText = parseFloat(activeInsulin).toFixed(1);
         activeInsulinAmount.style.color = 'red';
         activeInsulinUnits.innerText = ' units';
@@ -146,6 +163,45 @@ function saveBolus() {
         }
     }
     // after saving, reset screen
+    resetScreen();
+}
+
+function resetScreen() {
+    let carbs = document.getElementById("carbs");
+    let bG = document.getElementById("bG");
+
+    carbs.value = '';
+    bG.value = '';
+    document.getElementById("health").innerHTML = 'Health';
+    healthPen = 1;
+
+    let bolusAmount = document.getElementById("bolusAmount");
+    let bolusText = document.getElementById("bolusText");
+    let bolusUnits = document.getElementById("bolusUnits");
+    bolusText.innerText = '';
+    bolusAmount.innerText = '';
+    bolusUnits.innerText = '';
+
+    let bGAmount = document.getElementById("bGAmount");
+    let bGText = document.getElementById("bGText");
+    let bGUnits = document.getElementById("bGUnits");
+    bGText.innerText = '';
+    bGAmount.innerText = '';
+    bGUnits.innerText = '';
+
+    let healthAmount = document.getElementById("healthAmount");
+    let healthText = document.getElementById("healthText");
+    healthText.innerText = '';
+    healthAmount.innerText = '';
+
+    let activeInsulinAmount = document.getElementById("activeInsulinAmount");
+    let activeInsulinText = document.getElementById("activeInsulinText");
+    let activeInsulinUnits = document.getElementById("activeInsulinUnits");
+    activeInsulinText.innerText = '';
+    activeInsulinAmount.innerText = '';
+    activeInsulinUnits.innerText = '';
+
+    document.getElementById("bolusBtn").value = '';
 }
 
 function update() {

@@ -46,6 +46,15 @@
                         <span id="bolusAmount"></span>
                         <span id="bolusUnits"></span>
                     </div>
+                    <div id="bGLine">
+                        <span id="bGText"></span>
+                        <span id="bGAmount"></span>
+                        <span id="bGUnits"></span>
+                    </div>
+                    <div id="healthLine">
+                        <span id="healthText"></span>
+                        <span id="healthAmount"></span>
+                    </div>
                     <div id="activeInsulinLine">
                         <span id="activeInsulinText"></span>
                         <span id="activeInsulinAmount"></span>
@@ -69,8 +78,7 @@
                 <div class="calculatorControls">
                     <div class="saveUpdateBtns">
                         <button style="color: gold;" class="saveBtn" onclick="saveBolus()"><i class="fa-solid fa-floppy-disk"></i><span id="saveBtn">Save</span></button>
-                        <!-- change update button to show active insulin-->
-                        <button class="saveBtn" onclick="update()"><i class="fa-solid fa-arrows-rotate"></i>Update</button>
+                        <button class="saveBtn" onclick="resetScreen()"><i class="fa-solid fa-arrows-rotate"></i>Reset</button>
                     </div>
                 </div>
             </div>
