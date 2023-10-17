@@ -1,7 +1,6 @@
 // TODO: convert to React
-// TODO: automatically fit to phone size
-// TODO: remove highlight on button after press on mobile
-// TODO: add user settings
+// TODO: add user settings as second page
+// TODO: plot graph showing predicted bG (ignoring food) from bolus history and IoB curves
 
 const display = document.querySelector('.display');
 const calculatorButtons = document.querySelector('.calculatorControls').children;
@@ -18,6 +17,8 @@ for (let button of calculatorButtons) {
         if (btnValue === 'Calculate') calculate();
     })
 }
+
+document.addEventListener("touchstart", function(){}, true)
 
 // calculate total number of units needed
 const calculate = () => {
